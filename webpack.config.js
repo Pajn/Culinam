@@ -17,7 +17,7 @@ module.exports = {
           'babel?' + JSON.stringify({
             presets: ["react", "es2015", "stage-1"],
           }),
-         'ts'
+         'ts',
        ],
       },
       {
@@ -25,11 +25,6 @@ module.exports = {
         loader: "file?name=[name].[ext]",
       },
     ],
-  },
-  externals: {
-    //don't bundle the 'react' npm package with our bundle.js
-    //but get it from a global 'React' variable
-    // 'react': 'React',
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
