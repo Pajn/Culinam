@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "target": "es6",
+    "module": "es6",
+    "outDir": ".tmp/ts"
+  },
+  "filesGlob": [
+    "*.ts",
+    "app/**/*.tsx",
+    "app/**/*.ts",
+    "typings/*.ts"
+  ],
+  "files": []
+}

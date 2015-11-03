@@ -1,0 +1,5 @@
+.tmp/
+node_modules/
+typings/tsd.d.ts
+typings/*/*.d.ts
+tsconfig.json

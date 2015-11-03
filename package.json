@@ -1,0 +1,48 @@
+{
+  "name": "culinam",
+  "version": "1.0.0",
+  "description": "See [waffle](https://waffle.io/Pajn/Culinam) for the state of the project.",
+  "main": "app/index.tsx",
+  "scripts": {
+    "postinstall": "npm-run-all postinstall:*",
+    "postinstall:copy_base_config": "cp tsconfig.base.json tsconfig.json",
+    "postinstall:install_typings": "tsd install",
+    "postinstall:tsconfig_glob": "npm run tsconfig_glob",
+
+    "start": "webpack-dev-server --hot --inline",
+    "tsconfig_glob": "tsconfig -i 2",
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pajn/Culinam.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Pajn/Culinam/issues"
+  },
+  "homepage": "https://github.com/Pajn/Culinam#readme",
+  "devDependencies": {
+    "babel": "^6.0.15",
+    "babel-core": "^6.0.20",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-1": "^6.0.15",
+    "file-loader": "^0.8.4",
+    "npm-run-all": "^1.2.12",
+    "react-hot-loader": "^1.3.0",
+    "ts-loader": "^0.6.0",
+    "tsconfig-glob": "^0.2.1",
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.0-dev.20151016",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2"
+  }
+}
