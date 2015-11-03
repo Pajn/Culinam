@@ -8,10 +8,9 @@
     "postinstall:copy_base_config": "cp tsconfig.base.json tsconfig.json",
     "postinstall:install_typings": "tsd install",
     "postinstall:tsconfig_glob": "npm run tsconfig_glob",
-
     "start": "webpack-dev-server --hot --inline",
+    "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
     "tsconfig_glob": "tsconfig -i 2",
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +36,7 @@
     "ts-loader": "^0.6.0",
     "tsconfig-glob": "^0.2.1",
     "tsd": "^0.6.5",
+    "tslint": "^2.5.1",
     "typescript": "^1.7.0-dev.20151016",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
