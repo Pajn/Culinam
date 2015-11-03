@@ -3,8 +3,8 @@
     "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
     "target": "es6",
     "module": "es6",
     "outDir": ".tmp/ts"
