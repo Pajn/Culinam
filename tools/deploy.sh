@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Only deloy when merged to master
+if [ "$TRAVIS_BRANCH" != "master" ]
+then
+  exit 0
+
+elif [ "$TRAVIS_PULL_REQUEST" != "false" ]
+then
+  exit 0
+fi
+
+# Fail fast
+set -e
+
+# Build
+npm run build
+
+# Deploy
+cd dist
+
+git init
+git checkout -b gh-pages
+git config --global user.email "pie.or.paj@gmail.com"
+git config --global user.name "Travis"
+git remote add deploy "https://$GITHUB_AUTH@github.com/Pajn/Culinam.git"
+
+git add -A
+
+git commit -am "Deploy of build #$TRAVIS_BUILD_NUMBER of commit $TRAVIS_COMMIT"
+git push deploy gh-pages --force &> /dev/null

@@ -11,7 +11,8 @@
     "start": "webpack-dev-server --hot --inline",
     "lint": "tslint --rules-dir tools/lint-rules `find app -name '*.ts' -o -name '*.tsx'`",
     "tsconfig_glob": "tsconfig -i 2",
-    "build": "tsc",
+    "build": "webpack",
+    "typescript": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
