@@ -5,8 +5,6 @@ import {Link, Router, Route} from 'react-router';
 import {Cashier} from './components/cashier';
 import {Kitchen} from './components/kitchen';
 
-require('offline-plugin/runtime').install();
-
 const styles = Object.freeze({
   container: {
     display: 'flex',
