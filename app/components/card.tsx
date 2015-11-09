@@ -7,10 +7,11 @@ const styles = Object.freeze({
     padding: 8,
     color: 'black',
     backgroundColor: 'white',
-  }
+  },
 });
 
 export class Card extends React.Component<{children?: JSX.Element[]}, {}> {
+
   render() {
     return <div style={styles.container}>
       {this.props.children}

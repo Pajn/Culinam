@@ -1,11 +1,13 @@
-module.exports = {
+var OfflinePlugin = require('offline-plugin');
+
+var config = {
   entry: {
-    javascript: './app/index',
+    js: './app/index',
     html: './app/index.html',
   },
   output: {
     path: __dirname + '/dist',
-    filename: 'app.js',
+    filename: '[name].js',
   },
   module: {
     loaders: [
@@ -29,5 +31,33 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
     root: __dirname,
-  }
+  },
+  plugins: [
+    new OfflinePlugin({
+      caches: 'all',
+      scope: '/',
+      updateStrategy: 'hash',
+
+      ServiceWorker: {
+        output: 'sw.js'
+      },
+
+      AppCache: {
+        directory: 'appcache/'
+      }
+    }),
+  ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  var webpack = require('webpack');
+
+  config.plugins = config.plugins.concat([
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+      test: /\.js$/,
+    }),
+  ]);
+}
+
+module.exports = config;

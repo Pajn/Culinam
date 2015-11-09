@@ -17,6 +17,7 @@ const styles = Object.freeze({
 });
 
 export class Column extends React.Component<{name: string}, {}> {
+
   render() {
     return <div style={styles.container}>
       <header style={styles.header}><h2>{this.props.name}</h2></header>
