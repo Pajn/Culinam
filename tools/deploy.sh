@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Only deloy when merged to master
+# Only deploy when merged to master
 if [ "$TRAVIS_BRANCH" != "master" ]
 then
   exit 0
