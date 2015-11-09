@@ -5,6 +5,8 @@ import {Link, Router, Route} from 'react-router';
 import {Cashier} from './components/cashier';
 import {Kitchen} from './components/kitchen';
 
+require('offline-plugin/runtime').install();
+
 const styles = Object.freeze({
   container: {
     display: 'flex',
@@ -15,7 +17,7 @@ const styles = Object.freeze({
   },
   nav: {
     width: 64,
-    backgroundColor: 'rgb(33, 37, 43);',
+    backgroundColor: 'rgb(33, 37, 43)',
   },
   link: {
     display: 'block',
@@ -25,7 +27,7 @@ const styles = Object.freeze({
     flex: 1,
     color: 'whitesmoke',
     backgroundColor: 'rgb(40, 44, 52)',
-  }
+  },
 });
 
 class App extends React.Component<{children: JSX.Element}, {}> {
