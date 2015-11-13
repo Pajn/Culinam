@@ -14,7 +14,8 @@
     "app/**/*.tsx",
     "app/**/*.ts",
     "typings/*.ts",
-    "typings_custom/**/*.ts"
+    "typings_custom/**/*.ts",
+    "node_modules/immutable/dist/**/*.d.ts"
   ],
   "files": [],
   "formatCodeOptions": {

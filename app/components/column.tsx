@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Order} from '../entities';
 import {Card} from './card';
 
 const styles = Object.freeze({
@@ -16,7 +17,7 @@ const styles = Object.freeze({
   },
 });
 
-export class Column extends React.Component<{name: string}, {}> {
+export class Column extends React.Component<{name: string, orders: Order[]}, {}> {
 
   render() {
     return <div style={styles.container}>
