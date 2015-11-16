@@ -29,7 +29,7 @@ export class Kitchen extends StatefulComponent<{}, State> {
       done: [],
     };
 
-    state.orders.forEach(order => {
+    state.orders.orders.forEach(order => {
       switch (order.status) {
         case OrderStatus.Todo:  newState.todo.push(order);  break;
         case OrderStatus.Ready: newState.ready.push(order); break;

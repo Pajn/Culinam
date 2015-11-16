@@ -6,4 +6,9 @@ export enum OrderStatus {
 
 export interface Order {
   status: OrderStatus;
+  drinks: Drink[];
+}
+
+export interface Drink {
+   name: String;
 }
