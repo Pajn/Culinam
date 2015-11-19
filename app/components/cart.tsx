@@ -1,8 +1,5 @@
-/* tslint:disable:no-unused-variable */
 import * as React from 'react';
-/* tslint:enable:no-unused-variable */
-import {StatefulComponent} from '../redux/helpers';
-import {State as ReduxState} from '../redux/store';
+import {stateful} from '../redux/helpers';
 import {Dish} from '../entities';
 
 const styles = Object.freeze({
@@ -31,11 +28,8 @@ type State = {
   cart: Dish[],
 }
 
-export class Cart extends StatefulComponent<{}, State> {
-
-  getState(state: ReduxState) {
-    return state.cart;
-  }
+@stateful(state => state.cart)
+export class Cart extends React.Component<{}, State> {
 
   render() {
     return (

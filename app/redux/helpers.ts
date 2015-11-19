@@ -1,4 +1,3 @@
-import {Component} from 'react';
 import {Action} from './actions';
 import {State, store} from './store';
 
@@ -36,24 +35,26 @@ export function createReducer<S extends {}>(
   };
 }
 
-export abstract class StatefulComponent<P, S> extends Component<P, S> {
-  store = store;
-  subscriptionDisposer: Function;
+export function stateful(getState: (globalState: State) => Object): ClassDecorator {
+  return (target) => {
 
-  abstract getState(state: State);
+    return (...args) => {
+      const component = new target(...args);
+      const {componentWillUnmount} = component;
+      let dispose: Function;
 
-  constructor(props) {
-    super(props);
-    this.state = this.getState(store.getState());
-    this.subscriptionDisposer = store.subscribe(() =>
-      this.setState(this.getState(store.getState())));
-  }
+      component.componentWillUnmount = componentWillUnmount
+        ? (...args) => {
+          dispose();
+          return componentWillUnmount(...args);
+        }
+        : () => dispose();
 
-  componentWillUnmount() {
-    this.subscriptionDisposer();
-  }
+      component.state = getState(store.getState());
+      dispose = store.subscribe(() =>
+        component.setState(getState(store.getState())));
 
-  dispatch<T>(action: Action<T>, payload?: T) {
-    store.dispatch({type: action.type, payload});
-  }
+      return component;
+    };
+  };
 }
