@@ -1,6 +1,9 @@
 import * as React from 'react';
-import {Order} from '../entities';
-import {Card} from './card';
+import {DropTarget, DropTargetMonitor} from 'react-dnd';
+import {Order, OrderStatus} from '../entities';
+import {actions} from '../redux/actions';
+import {dispatch} from '../redux/helpers';
+import {OrderReceipt, dragType} from './order-receipt';
 
 const styles = Object.freeze({
   container: {
@@ -17,17 +20,35 @@ const styles = Object.freeze({
   },
 });
 
-export class Column extends React.Component<{name: string, orders: Order[]}, {}> {
+type Properties = {
+  name: string,
+  orders: Order[],
+  orderStatus: OrderStatus,
+  connectDropTarget?,
+  ref?,
+};
+
+const events = {
+  drop(props: Properties, monitor: DropTargetMonitor) {
+    dispatch(actions.setOrderStatus, {order: monitor.getItem(), status: props.orderStatus});
+  },
+};
+
+@DropTarget(dragType, events, (connect) => ({connectDropTarget: connect.dropTarget()}))
+export class Column extends React.Component<Properties, {}> {
 
   render() {
-    return <div style={styles.container}>
-      <header style={styles.header}><h2>{this.props.name}</h2></header>
-      <div>
-        <Card>
-          <h1>Mat</h1>
-          <h1>Dryck</h1>
-        </Card>
+    const {connectDropTarget, orders} = this.props;
+
+    return connectDropTarget(
+      <div style={styles.container}>
+        <header style={styles.header}>
+          <h2>{this.props.name}</h2>
+        </header>
+        <div>
+          {orders.map(order => <OrderReceipt order={order} key={order.id} />)}
+        </div>
       </div>
-    </div>;
+    );
   }
 }

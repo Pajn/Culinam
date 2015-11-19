@@ -39,18 +39,17 @@ export class Cart extends StatefulComponent<{}, State> {
 
   render() {
     return (
-    <div style={styles.wrapper}>
+      <div style={styles.wrapper}>
         <p style={styles.text}>This is the cart</p>
         <p style={styles.text}>{this.state.cart.length}</p>
         <div style={styles.listWrapper}>
           {
             this.state.cart.map((item, id) => (
-                <div style={styles.rowWrapper} key={id}>
-                  <p style={styles.text}>{item.name}</p>
-                  <p style={styles.text}>{item.price}</p>
-                </div>
-              )
-            )
+              <div style={styles.rowWrapper} key={id}>
+                <p style={styles.text}>{item.name}</p>
+                <p style={styles.text}>{item.price}</p>
+              </div>
+            ))
           }
         </div>
       </div>

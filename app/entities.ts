@@ -5,9 +5,10 @@ export enum OrderStatus {
 }
 
 export interface Order {
+  id: number;
   status: OrderStatus;
   drinks: Drink[];
-
+  dishes: Dish[];
 }
 
 //TODO: Generalize entities

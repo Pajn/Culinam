@@ -1,4 +1,4 @@
-import {Order, Dish} from '../entities';
+import {Order, OrderStatus, Dish} from '../entities';
 
 export interface Action<T> {
   type?: string;
@@ -8,6 +8,7 @@ export interface Action<T> {
 class Actions {
   inCart: Action<{dish: Dish}> = {};
   orderCreated: Action<{order: Order}> = {};
+  setOrderStatus: Action<{order: Order, status: OrderStatus}> = {};
 }
 
 function createActions(actionDefinitions: Actions) {
