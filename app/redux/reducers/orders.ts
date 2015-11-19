@@ -1,4 +1,3 @@
-import {List} from 'immutable';
 import {Order} from '../../entities';
 import {actions} from '../actions';
 import {createReducer, when} from '../helpers';

@@ -4,6 +4,8 @@ import {Link, Router, Route} from 'react-router';
 
 import {Cashier} from './components/cashier';
 import {Kitchen} from './components/kitchen';
+import {Drinks} from './components/drinks';
+import {Dishes} from './components/dishes';
 
 const styles = Object.freeze({
   container: {
@@ -33,8 +35,8 @@ class App extends React.Component<{children: JSX.Element}, {}> {
   render() {
     return <div style={styles.container}>
       <nav style={styles.nav}>
-        <Link style={styles.link} to='/cachier'>cachier</Link>
-        <Link style={styles.link} to='/kitchen'>kitchen</Link>
+        <Link style={styles.link} to='/cashier'>Kassa</Link>
+        <Link style={styles.link} to='/kitchen'>Kök</Link>
       </nav>
       <main style={styles.main}>{this.props.children}</main>
     </div>;
@@ -45,7 +47,10 @@ render(
   (
     <Router>
       <Route path='/' component={App}>
-        <Route path='cachier' component={Cashier} />
+        <Route path='cashier' component={Cashier}>
+          <Route path='dishes' component={Dishes} />
+          <Route path='drinks' component={Drinks} />
+        </Route>
         <Route path='kitchen' component={Kitchen} />
       </Route>
     </Router>

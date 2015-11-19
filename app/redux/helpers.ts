@@ -41,7 +41,8 @@ export abstract class StatefulComponent<P, S> extends Component<P, S> {
   constructor(props) {
     super(props);
     this.state = this.getState(store.getState());
-    this.subscriptionDisposer = store.subscribe(() => this.getState(store.getState()));
+    this.subscriptionDisposer = store.subscribe(() =>
+      this.setState(this.getState(store.getState())));
   }
 
   componentWillUnmount() {
