@@ -14,7 +14,7 @@ const styles = Object.freeze({
   },
   listWrapper: {
     display: 'flex',
-    'flex-direction': 'column',
+    flexDirection: 'column',
     padding: 0,
   },
   rowWrapper: {
@@ -35,15 +35,28 @@ export class Cart extends React.Component<{}, State> {
     return (
       <div style={styles.wrapper}>
         <p style={styles.text}>This is the cart</p>
-        <p style={styles.text}>{this.state.cart.length}</p>
         <div style={styles.listWrapper}>
           {
-            this.state.cart.map((item, id) => (
-              <div style={styles.rowWrapper} key={id}>
-                <p style={styles.text}>{item.name}</p>
-                <p style={styles.text}>{item.price}</p>
-              </div>
-            ))
+            this.state.cart
+              .reduce((cartItems, currentItem) => {
+                let exists = cartItems.find(item => item.name === currentItem.name);
+                if (exists) {
+                  exists.count++;
+                  exists.price = currentItem.price * exists.count;
+                }
+                else {
+                  cartItems.push({'name': currentItem.name, 'price': currentItem.price, 'count': 1});
+                }
+                return cartItems;
+              }, [])
+              .map((item, id) => (
+                  <div style={styles.rowWrapper} key={id}>
+                    <p style={styles.text}>{item.count}</p>
+                    <p style={styles.text}>{item.name}</p>
+                    <p style={styles.text}>{item.price} kr</p>
+                  </div>
+                )
+              )
           }
         </div>
       </div>
