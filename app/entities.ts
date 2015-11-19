@@ -6,4 +6,18 @@ export enum OrderStatus {
 
 export interface Order {
   status: OrderStatus;
+  drinks: Drink[];
+
+}
+
+//TODO: Generalize entities
+export interface Dish {
+    id: number;
+    name: string;
+    price: number;
+}
+
+export interface Drink {
+   name: String;
+   price: number;
 }

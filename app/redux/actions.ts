@@ -1,21 +1,22 @@
-import {Order} from '../entities';
+import {Order, Dish} from '../entities';
 
 export interface Action<T> {
-  name?: string;
+  type?: string;
   payload?: T;
 }
 
 class Actions {
+  inCart: Action<{dish: Dish}> = {};
   orderCreated: Action<{order: Order}> = {};
 }
 
 function createActions(actionDefinitions: Actions) {
   return Object.freeze(
-    Object.keys(actionDefinitions).reduce((actions, name) => {
-      let actionDefinition = actionDefinitions[name];
+    Object.keys(actionDefinitions).reduce((actions, type) => {
+      let actionDefinition = actionDefinitions[type];
 
-      actions[name] = Object.create(actionDefinition);
-      actions[name].name = name;
+      actions[type] = Object.create(actionDefinition);
+      actions[type].type = type;
       return actions;
     }, new Actions())
   );
