@@ -1,7 +1,9 @@
 import * as React from 'react';
+import {DragDropContext} from 'react-dnd';
 import {render} from 'react-dom';
 import {Link, Router, Route} from 'react-router';
 
+import {dndBackend} from './dnd';
 import {Cashier} from './components/cashier';
 import {Kitchen} from './components/kitchen';
 import {Drinks} from './components/drinks';
@@ -30,16 +32,19 @@ const styles = Object.freeze({
   },
 });
 
+@DragDropContext(dndBackend())
 class App extends React.Component<{children: JSX.Element}, {}> {
 
   render() {
-    return <div style={styles.container}>
-      <nav style={styles.nav}>
-        <Link style={styles.link} to='/cashier'>Kassa</Link>
-        <Link style={styles.link} to='/kitchen'>Kök</Link>
-      </nav>
-      <main style={styles.main}>{this.props.children}</main>
-    </div>;
+    return (
+      <div style={styles.container}>
+        <nav style={styles.nav}>
+          <Link style={styles.link} to='/cashier'>Kassa</Link>
+          <Link style={styles.link} to='/kitchen'>Kök</Link>
+        </nav>
+        <main style={styles.main}>{this.props.children}</main>
+      </div>
+    );
   }
 }
 

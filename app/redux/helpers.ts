@@ -7,6 +7,10 @@ export interface ActionHandler<T> {
   handler: (state, payload: T) => void;
 }
 
+export function dispatch<T>(action: Action<T>, payload?: T) {
+  store.dispatch({type: action.type, payload});
+}
+
 export function when<T>(action: Action<T>, callback: (state, payload: T) => void) {
   return {
     actionName: action.type,

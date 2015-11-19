@@ -13,8 +13,10 @@ const styles = Object.freeze({
 export class Card extends React.Component<{children?: JSX.Element[]}, {}> {
 
   render() {
-    return <div style={styles.container}>
-      {this.props.children}
-    </div>;
+    return (
+      <div style={styles.container}>
+        {this.props.children}
+      </div>
+    );
   };
 }
