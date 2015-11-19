@@ -3,8 +3,7 @@ import * as React from 'react';
 /* tslint:enable:no-unused-variable */
 import {findDOMNode} from 'react-dom';
 import {Order, OrderStatus} from '../entities';
-import {StatefulComponent} from '../redux/helpers';
-import {State as ReduxState} from '../redux/store';
+import {stateful} from '../redux/helpers';
 import {Column} from './column';
 import {OrderReceiptPreview} from './order-receipt-preview';
 
@@ -23,7 +22,19 @@ type State = {
   width: number,
 };
 
-export class Kitchen extends StatefulComponent<{}, State> {
+@stateful(state => state.orders.orders.reduce((state, order) => {
+  switch (order.status) {
+    case OrderStatus.Todo:  state.todo.push(order);  break;
+    case OrderStatus.Ready: state.ready.push(order); break;
+    case OrderStatus.Done:  state.done.push(order);  break;
+  }
+  return state;
+}, {
+  todo: [],
+  ready: [],
+  done: [],
+}))
+export class Kitchen extends React.Component<{}, State> {
 
   componentDidMount() {
     this.setState({
@@ -31,33 +42,16 @@ export class Kitchen extends StatefulComponent<{}, State> {
     } as State);
   }
 
-  getState(state: ReduxState) {
-    const newState: State = {
-      todo: [],
-      ready: [],
-      done: [],
-      width: (this.state && this.state.width) || 0,
-    };
-
-    state.orders.orders.forEach(order => {
-      switch (order.status) {
-        case OrderStatus.Todo:  newState.todo.push(order);  break;
-        case OrderStatus.Ready: newState.ready.push(order); break;
-        case OrderStatus.Done:  newState.done.push(order);  break;
-      }
-    });
-
-    return newState;
-  }
-
   render() {
     const {todo, ready, done, width} = this.state;
 
-    return <div style={styles.container}>
-      <Column name='Todo' orders={todo} orderStatus={OrderStatus.Todo} ref='column' />
-      <Column name='Kan hämtas' orders={ready} orderStatus={OrderStatus.Ready} />
-      <Column name='Uthämtade' orders={done} orderStatus={OrderStatus.Done} />
-      <OrderReceiptPreview width={width} />
-    </div>;
+    return (
+      <div style={styles.container}>
+        <Column name='Todo' orders={todo} orderStatus={OrderStatus.Todo} ref='column' />
+        <Column name='Kan hämtas' orders={ready} orderStatus={OrderStatus.Ready} />
+        <Column name='Uthämtade' orders={done} orderStatus={OrderStatus.Done} />
+        <OrderReceiptPreview width={width} />
+      </div>
+    );
   }
 }
