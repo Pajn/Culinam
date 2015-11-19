@@ -46,7 +46,7 @@ export function stateful(getState: (globalState: State) => Object): ClassDecorat
       component.componentWillUnmount = componentWillUnmount
         ? (...args) => {
           dispose();
-          return componentWillUnmount(...args);
+          return componentWillUnmount.apply(component, args);
         }
         : () => dispose();
 
