@@ -34,7 +34,6 @@ export class Cart extends React.Component<{}, State> {
   render() {
     return (
       <div style={styles.wrapper}>
-        <p style={styles.text}>This is the cart</p>
         <div style={styles.listWrapper}>
           {
             this.state.cart
@@ -43,9 +42,12 @@ export class Cart extends React.Component<{}, State> {
                 if (exists) {
                   exists.count++;
                   exists.price = currentItem.price * exists.count;
-                }
-                else {
-                  cartItems.push({'name': currentItem.name, 'price': currentItem.price, 'count': 1});
+                } else {
+                  cartItems.push({
+                    'name': currentItem.name,
+                    'price': currentItem.price,
+                    'count': 1,
+                  });
                 }
                 return cartItems;
               }, [])
