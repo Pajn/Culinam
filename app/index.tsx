@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {DragDropContext} from 'react-dnd';
 import {render} from 'react-dom';
-import {Link, Router, Route} from 'react-router';
+import {Link, IndexRedirect, Router, Route} from 'react-router';
 
 import {dndBackend} from './dnd';
 import {Cashier} from './components/cashier';
@@ -52,6 +52,7 @@ render(
   (
     <Router>
       <Route path='/' component={App}>
+        <IndexRedirect to='/kitchen' />
         <Route path='cashier' component={Cashier}>
           <Route path='dishes' component={Dishes} />
           <Route path='drinks' component={Drinks} />
