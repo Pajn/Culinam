@@ -9,6 +9,8 @@ import {Kitchen} from './components/kitchen';
 import {Drinks} from './components/drinks';
 import {Dishes} from './components/dishes';
 
+require('offline-plugin/runtime').install();
+
 const styles = Object.freeze({
   container: {
     display: 'flex',
