@@ -62,16 +62,28 @@ declare module ReactRouter {
         from?: string;
         to?: string;
     }
+
+    // Redirect
+    interface IndexRedirectProp {
+        path?: string;
+        to?: string;
+    }
     interface Redirect extends React.ReactElement<RedirectProp> {}
     interface RedirectClass extends React.ComponentClass<RedirectProp> {}
+    interface IndexRedirect extends React.ReactElement<IndexRedirectProp> {}
+    interface IndexRedirectClass extends React.ComponentClass<IndexRedirectProp> {}
 
     interface Route extends React.ReactElement<RouteProp> {}
     interface RouteClass extends React.ComponentClass<RouteProp> {}
+    interface IndexRoute extends React.ReactElement<IndexRouteProp> {}
+    interface IndexRouteClass extends React.ComponentClass<IndexRouteProp> {}
 
     var DefaultRoute: DefaultRouteClass;
     var NotFoundRoute: NotFoundRouteClass;
     var Redirect: RedirectClass;
+    var IndexRedirect: IndexRedirectClass;
     var Route: RouteClass;
+    var IndexRoute: IndexRouteClass;
 
     interface CreateRouteOptions {
         name?: string;
@@ -160,6 +172,13 @@ declare module ReactRouter {
     interface RouteProp {
         name?: string;
         path?: string;
+        handler?: React.ComponentClass<any>;
+        ignoreScrollBehavior?: boolean;
+        component?: React.ComponentClass<any>;
+    }
+
+    interface IndexRouteProp {
+        name?: string;
         handler?: React.ComponentClass<any>;
         ignoreScrollBehavior?: boolean;
         component?: React.ComponentClass<any>;
