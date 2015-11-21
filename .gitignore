@@ -1,6 +1,5 @@
 .tmp/
 dist/
 node_modules/
-typings/tsd.d.ts
-typings/*/*.d.ts
+typings/**/*
 tsconfig.json
