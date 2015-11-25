@@ -15,6 +15,7 @@ set -e
 
 # Build
 npm run build
+babel-node --presets es2015,react tools/bootstrap.js > dist/index.html
 
 # Deploy
 cd dist

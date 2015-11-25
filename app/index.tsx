@@ -9,7 +9,9 @@ import {Kitchen} from './components/kitchen';
 import {Drinks} from './components/drinks';
 import {Dishes} from './components/dishes';
 
-require('offline-plugin/runtime').install();
+if (window.document) {
+  require('offline-plugin/runtime').install();
+}
 
 const styles = Object.freeze({
   container: {
@@ -50,18 +52,20 @@ class App extends React.Component<{children: JSX.Element}, {}> {
   }
 }
 
-render(
-  (
-    <Router>
-      <Route path='/' component={App}>
-        <IndexRedirect to='/kitchen' />
-        <Route path='cashier' component={Cashier}>
-          <Route path='dishes' component={Dishes} />
-          <Route path='drinks' component={Drinks} />
-        </Route>
-        <Route path='kitchen' component={Kitchen} />
+export function routes() {
+  return (
+    <Route path='/' component={App}>
+      <IndexRedirect to='/kitchen' />
+      <Route path='cashier' component={Cashier}>
+        <Route path='dishes' component={Dishes} />
+        <Route path='drinks' component={Drinks} />
       </Route>
-    </Router>
-  ),
-  document.getElementById('app')
-);
+      <Route path='kitchen' component={Kitchen} />
+      <Route path='shell' />
+    </Route>
+  );
+}
+
+if (window.document) {
+  render(<Router>{routes()}</Router>, document.getElementById('app'));
+}
