@@ -28,7 +28,7 @@ export class OrderReceipt extends React.Component<Properties, {}> {
       <div style={isDragging ? {opacity: 0} : {}}>
         <Card>
           <ul>
-            {order.dishes.map(dish => <h2 key={dish.id}>{dish.name}</h2>)}
+            {order.items.map(dish => <h2 key={dish.id}>{dish.name}</h2>)}
           </ul>
         </Card>
       </div>

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {dispatch, stateful} from '../redux/helpers';
 import {actions} from '../redux/actions';
-import {Dish} from '../entities';
+import {Item} from '../entities';
 
-type State = {dishes: Dish[]};
+type State = {items: Item[]};
 
 @stateful(state => ({
-  dishes: [{
+  items: [{
     id: 1,
     name: 'Lumber Jack',
     price: 160,
@@ -24,15 +24,15 @@ export class Dishes extends React.Component<{}, State> {
     return (
       <div>
       {
-        this.state.dishes.map(dish => (
-          <p key={dish.id} onClick={() => {this.onAddToCart(dish);}}>{dish.name}</p>)
+        this.state.items.map(item => (
+          <p key={item.id} onClick={() => {this.onAddToCart(item);}}>{item.name}</p>)
         )
       }
       </div>
     );
   }
 
-  private onAddToCart(dish: Dish) {
-    dispatch(actions.inCart, {dish});
+  private onAddToCart(item: Item) {
+    dispatch(actions.inCart, {item});
   }
 }

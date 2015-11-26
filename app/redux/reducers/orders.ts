@@ -7,7 +7,7 @@ type State = {orders: Array<Order>};
 export type OrderState = State;
 
 export const orders = createReducer<State>(
-  {orders: [{id: 1, status: 1, dishes: [{id: 1, name: 'Test Dish'}]}] as Order[]},
+  {orders: [{id: 1, status: 1, items: [{id: 1, name: 'Test Item'}]}] as Order[]},
   when(actions.orderCreated, (state: State, payload) => {
     console.log(payload.order);
     state.orders.push(payload.order);

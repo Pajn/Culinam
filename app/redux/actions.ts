@@ -1,4 +1,4 @@
-import {Order, OrderStatus, Dish} from '../entities';
+import {Order, OrderStatus, Item} from '../entities';
 
 export interface Action<T> {
   type?: string;
@@ -6,7 +6,7 @@ export interface Action<T> {
 }
 
 class Actions {
-  inCart: Action<{dish: Dish}> = {};
+  inCart: Action<{item: Item}> = {};
   orderCreated: Action<{order: Order}> = {};
   setOrderStatus: Action<{order: Order, status: OrderStatus}> = {};
 }

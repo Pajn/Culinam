@@ -1,10 +1,10 @@
 import {combineReducers, createStore} from 'redux';
 import {orders, OrderState} from './reducers/orders';
-import {dish, DishState} from './reducers/dish';
+import {item, ItemState} from './reducers/dish';
 
 export type State = {
-  cart: DishState,
+  cart: ItemState,
   orders: OrderState,
 };
 
-export const store = createStore(combineReducers({cart: dish, orders}));
+export const store = createStore(combineReducers({cart: item, orders}));
