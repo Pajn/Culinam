@@ -3,9 +3,8 @@ language: node_js
 node_js:
   - "4.0"
 
-before_script:
-  - export TSD_GITHUB_TOKEN=917e66e4bf6461d6ee66ed1f0a6bad1972ab2e5a
-  - npm install
+before_install:
+  - export TSD_GITHUB_TOKEN=600c7f2cb9a4cd36521d03c24a032ef0aa8e8c47
 
 script:
  - npm run lint

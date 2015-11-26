@@ -7,19 +7,12 @@ export enum OrderStatus {
 export interface Order {
   id: number;
   status: OrderStatus;
-  drinks: Drink[];
-  dishes: Dish[];
+  items: Item[];
 }
 
-//TODO: Generalize entities
-export interface Dish {
+export interface Item {
     id: number;
     name: string;
     price: number;
     count?: number;
-}
-
-export interface Drink {
-   name: String;
-   price: number;
 }

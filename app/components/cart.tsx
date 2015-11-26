@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {stateful} from '../redux/helpers';
-import {Dish} from '../entities';
+import {Item} from '../entities';
 
 const styles = Object.freeze({
   text: {
@@ -25,7 +25,7 @@ const styles = Object.freeze({
 });
 
 type State = {
-  cart: Dish[],
+  cart: Item[],
 }
 
 @stateful(state => state.cart)
