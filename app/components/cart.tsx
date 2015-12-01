@@ -9,19 +9,27 @@ const styles = Object.freeze({
   wrapper: {
     width: '30%',
     alignItems: 'stretch',
+    flexDirection: 'column',
     padding: 8,
     background: 'white',
+    display: 'flex',
   },
   listWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 0,
+    padding: 8,
+    flex: 1,
   },
   rowWrapper: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  cartPanel: {
+    display: 'flex',
+    background: 'black',
+    height: 50,
+  }
 });
 
 type State = {
@@ -60,6 +68,8 @@ export class Cart extends React.Component<{}, State> {
                 )
               )
           }
+        </div>
+        <div style={styles.cartPanel}>
         </div>
       </div>
     );

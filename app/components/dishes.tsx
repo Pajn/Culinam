@@ -5,6 +5,17 @@ import {Item} from '../entities';
 
 type State = {items: Item[]};
 
+const styles = Object.freeze({
+  link: {
+    display: 'block',
+    color: 'white',
+  },
+  wrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+});
+
 @stateful(state => ({
   items: [{
     id: 1,
@@ -22,12 +33,14 @@ export class Dishes extends React.Component<{}, State> {
 
   render() {
     return (
-      <div>
-      {
-        this.state.items.map(item => (
-          <p key={item.id} onClick={() => {this.onAddToCart(item);}}>{item.name}</p>)
-        )
-      }
+      <div style={styles.wrapper}>
+        <div>
+          {
+            this.state.items.map(item => (
+              <p key={item.id} onClick={() => {this.onAddToCart(item);}}>{item.name}</p>)
+            )
+          }
+        </div>
       </div>
     );
   }

@@ -8,17 +8,15 @@ const styles = Object.freeze({
   },
   wrapper: {
     display: 'flex',
-    flex: 1,
   },
 });
 
-export class Categories extends React.Component<{categories?: JSX.Element}, {}> {
-
+export class CategoryMenu extends React.Component<{}, {}> {
   render() {
-    console.log(this.props);
-    return (
-      <div style={styles.wrapper}>
-        {this.props.categories}
+    return(
+      <div>
+        <Link style={styles.link} to='cashier/dishes'>Maträtter</Link>
+        <Link style={styles.link} to='cashier/drinks'>Bar</Link>
       </div>
     );
   }
