@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Link} from 'react-router';
 import {OrderStatus} from '../entities';
 import {Categories} from './categories';
 import {Cart} from './cart';

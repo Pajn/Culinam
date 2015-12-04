@@ -70,6 +70,7 @@ export class Cart extends React.Component<{}, State> {
           }
         </div>
         <div style={styles.cartPanel}>
+          
         </div>
       </div>
     );

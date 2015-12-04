@@ -12,6 +12,7 @@ const styles = Object.freeze({
 });
 
 export class CategoryMenu extends React.Component<{}, {}> {
+
   render() {
     return(
       <div>
