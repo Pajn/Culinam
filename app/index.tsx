@@ -8,6 +8,7 @@ import {Cashier} from './components/cashier';
 import {Kitchen} from './components/kitchen';
 import {Drinks} from './components/drinks';
 import {Dishes} from './components/dishes';
+import {CategoryMenu} from './components/category-menu';
 
 if (window.document) {
   require('offline-plugin/runtime').install();
@@ -31,6 +32,7 @@ const styles = Object.freeze({
   },
   main: {
     flex: 1,
+    display: 'flex',
     color: 'whitesmoke',
     backgroundColor: 'rgb(40, 44, 52)',
   },
@@ -43,7 +45,7 @@ class App extends React.Component<{children: JSX.Element}, {}> {
     return (
       <div style={styles.container}>
         <nav style={styles.nav}>
-          <Link style={styles.link} to='/cashier'>Kassa</Link>
+          <Link style={styles.link} to='/cashier/categorymenu'>Kassa</Link>
           <Link style={styles.link} to='/kitchen'>Kök</Link>
         </nav>
         <main style={styles.main}>{this.props.children}</main>
@@ -57,6 +59,7 @@ export function routes() {
     <Route path='/' component={App}>
       <IndexRedirect to='/kitchen' />
       <Route path='cashier' component={Cashier}>
+        <Route path='categorymenu' component={CategoryMenu} />
         <Route path='dishes' component={Dishes} />
         <Route path='drinks' component={Drinks} />
       </Route>

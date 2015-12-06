@@ -5,9 +5,11 @@ export class Drinks extends React.Component<{}, {}> {
     render() {
       return (
         <div>
-          <p>drink1</p>
-          <p>drink2</p>
-          <p>drink3</p>
+          <div>
+            <p>drink1</p>
+            <p>drink2</p>
+            <p>drink3</p>
+          </div>
         </div>
       );
     }

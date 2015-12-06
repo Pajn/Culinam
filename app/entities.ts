@@ -11,7 +11,7 @@ export interface Order {
 }
 
 export interface Item {
-    id: number;
+    id?: number;
     name: string;
     price: number;
     count?: number;
