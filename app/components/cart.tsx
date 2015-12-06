@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {stateful} from '../redux/helpers';
 import {Item} from '../entities';
+import {Dish} from '../components/dish';
 
 const styles = Object.freeze({
   text: {
@@ -28,49 +28,30 @@ const styles = Object.freeze({
   cartPanel: {
     display: 'flex',
     background: 'black',
+    border: '1 px solid #000',
     height: 50,
-  }
+  },
 });
 
-type State = {
-  cart: Item[],
+type Properties = {
+  cartItems: Item[],
+  onCartSubmit: Function,
 }
 
-@stateful(state => state.cart)
-export class Cart extends React.Component<{}, State> {
+export class Cart extends React.Component<Properties, {}> {
 
   render() {
+    const {cartItems, onCartSubmit} = this.props;
     return (
       <div style={styles.wrapper}>
         <div style={styles.listWrapper}>
           {
-            this.state.cart
-              .reduce((cartItems, currentItem) => {
-                let exists = cartItems.find(item => item.name === currentItem.name);
-                if (exists) {
-                  exists.count++;
-                  exists.price = currentItem.price * exists.count;
-                } else {
-                  cartItems.push({
-                    'name': currentItem.name,
-                    'price': currentItem.price,
-                    'count': 1,
-                  });
-                }
-                return cartItems;
-              }, [])
-              .map((item, id) => (
-                  <div style={styles.rowWrapper} key={id}>
-                    <p style={styles.text}>{item.count}</p>
-                    <p style={styles.text}>{item.name}</p>
-                    <p style={styles.text}>{item.price} kr</p>
-                  </div>
-                )
-              )
+            cartItems
+              .map((item:Item, id:Number) => (<Dish key={id} item={item} />))
           }
         </div>
         <div style={styles.cartPanel}>
-          
+          <a href='#' onClick={(e) => {onCartSubmit(e, cartItems);}}>Bonga</a>
         </div>
       </div>
     );

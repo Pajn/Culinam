@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Link} from 'react-router';
 
 const styles = Object.freeze({
   link: {
