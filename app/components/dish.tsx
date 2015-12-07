@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Item} from '../entities';
+import {OrderItem} from '../entities';
 
 const styles = Object.freeze({
   text: {
@@ -14,18 +14,18 @@ const styles = Object.freeze({
 
 type Properties = {
   key: any,
-  item: Item,
-}
+  item: OrderItem,
+};
 
 export class Dish extends React.Component<Properties, {}> {
 
   render() {
-    const {key, item} = this.props;
+    const {count, price, name} = this.props.item;
     return (
-      <div style={styles.rowWrapper} key={key}>
-        <p style={styles.text}>{item.count}</p>
-        <p style={styles.text}>{item.name}</p>
-        <p style={styles.text}>{item.price} kr</p>
+      <div style={styles.rowWrapper}>
+        <p style={styles.text}>{count}</p>
+        <p style={styles.text}>{name}</p>
+        <p style={styles.text}>{price * count} kr</p>
       </div>
     );
   }

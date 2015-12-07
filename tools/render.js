@@ -1,4 +1,3 @@
-import {readFile} from 'fs';
 import jsdom from 'jsdom';
 import {renderToString} from 'react-dom/server';
 import {match, RoutingContext} from 'react-router';

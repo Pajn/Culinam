@@ -14,7 +14,6 @@ const styles = Object.freeze({
 export class Categories extends React.Component<{categories?: JSX.Element}, {}> {
 
   render() {
-    console.log(this.props);
     return (
       <div style={styles.wrapper}>
         {this.props.categories}

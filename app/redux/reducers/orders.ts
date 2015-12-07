@@ -1,20 +1,16 @@
+import {createReducer, updateIn} from 'decorated-redux';
 import {Order} from '../../entities';
 import {actions} from '../actions';
-import {createReducer, when} from '../helpers';
 
-type State = {orders: Array<Order>};
+export type OrderState = Order[];
 
-export type OrderState = State;
-
-export const orders = createReducer<State>(
-  {orders: [] as Order[]},
-  when(actions.orderCreated, (state: State, payload) => {
-    console.log(payload.order);
-    state.orders.push(payload.order);
-  }),
-  when(actions.setOrderStatus, (state: State, {order, status}) => {
-    state.orders.find(o => o.id === order.id).status = status;
+export const orders = createReducer<OrderState>([])
+  .when(actions.orderCreated, (orders, {order}) =>
+      [...orders, Object.assign(order, {id: Date.now()})])
+  .when(actions.setOrderStatus, (orders, {order, status}) => {
+    const index = orders.findIndex(({id}) => id === order.id);
+    if (index > -1) {
+      return updateIn([index, 'status'], status, orders);
+    }
   })
-);
-
-// {orders: [{id: 1, status: 1, items: [{id: 1, name: 'Test Item', price:123}]}] as Order[]},
+  .build();

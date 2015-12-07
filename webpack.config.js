@@ -1,6 +1,12 @@
 var OfflinePlugin = require('offline-plugin');
 
+var babelPlugins = [];
+
+const production = process.env.NODE_ENV === 'production';
+
 var config = {
+  debug: !production,
+  devtool: production ? '' : 'source-map',
   entry: {
     js: './app/index',
     html: './app/index.html',
@@ -18,6 +24,9 @@ var config = {
           'react-hot',
           'babel?' + JSON.stringify({
             presets: ["react", "es2015", "stage-1"],
+            plugins: production
+              ? ['transform-react-constant-elements', 'transform-react-inline-elements']
+              : [],
           }),
          'ts',
        ],

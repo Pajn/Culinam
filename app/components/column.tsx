@@ -2,7 +2,7 @@ import * as React from 'react';
 import {DropTarget, DropTargetMonitor} from 'react-dnd';
 import {Order, OrderStatus} from '../entities';
 import {actions} from '../redux/actions';
-import {dispatch} from '../redux/helpers';
+import {dispatch} from '../redux/store';
 import {OrderReceipt, dragType} from './order-receipt';
 
 const styles = Object.freeze({
@@ -46,7 +46,7 @@ export class Column extends React.Component<Properties, {}> {
           <h2>{this.props.name}</h2>
         </header>
         <div>
-          {orders.map(order => <OrderReceipt order={order} key={order.id} />)}
+          {orders.map((order, i) => <OrderReceipt order={order} key={i} />)}
         </div>
       </div>
     );

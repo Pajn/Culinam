@@ -3,7 +3,7 @@ import * as React from 'react';
 /* tslint:enable:no-unused-variable */
 import {findDOMNode} from 'react-dom';
 import {Order, OrderStatus} from '../entities';
-import {stateful} from '../redux/helpers';
+import {stateful} from '../redux/store';
 import {Column} from './column';
 import {OrderReceiptPreview} from './order-receipt-preview';
 
@@ -22,7 +22,7 @@ type State = {
   width: number,
 };
 
-@stateful(state => state.orders.orders.reduce((state, order) => {
+@stateful(state => state.orders.reduce((state, order) => {
   switch (order.status) {
     case OrderStatus.Todo:  state.todo.push(order);  break;
     case OrderStatus.Ready: state.ready.push(order); break;
