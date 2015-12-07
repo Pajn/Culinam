@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Item} from '../entities';
-import {Dish} from '../components/dish';
+import {OrderItem} from '../entities';
+import {Dish} from './dish';
 
 const styles = Object.freeze({
   text: {
@@ -34,7 +34,7 @@ const styles = Object.freeze({
 });
 
 type Properties = {
-  cartItems: Item[],
+  cartItems: OrderItem[],
   onCartSubmit: Function,
 }
 
@@ -45,13 +45,10 @@ export class Cart extends React.Component<Properties, {}> {
     return (
       <div style={styles.wrapper}>
         <div style={styles.listWrapper}>
-          {
-            cartItems
-              .map((item:Item, id:Number) => (<Dish key={id} item={item} />))
-          }
+          {cartItems.map((item, key) => <Dish key={key} item={item} />)}
         </div>
         <div style={styles.cartPanel}>
-          <a href='#' onClick={(e) => {onCartSubmit(e, cartItems);}}>Bonga</a>
+          <a href='#' onClick={(e) => onCartSubmit(e, cartItems)}>Bonga</a>
         </div>
       </div>
     );

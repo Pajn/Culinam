@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "preserve",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "inlineSourceMap": false,
-    "inlineSources": false,
     "target": "es6",
     "module": "es6",
     "outDir": ".tmp/ts"
@@ -15,6 +13,7 @@
     "app/**/*.ts",
     "typings/*.ts",
     "typings_custom/**/*.ts",
+    "node_modules/decorated-redux/typings.d.ts",
     "node_modules/immutable/dist/**/*.d.ts"
   ],
   "files": [],

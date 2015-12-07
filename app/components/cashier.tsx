@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {stateful, dispatch} from '../redux/helpers';
+import {OrderItem, OrderStatus} from '../entities';
 import {actions} from '../redux/actions';
+import {stateful, dispatch} from '../redux/store';
 import {Categories} from './categories';
 import {Cart} from './cart';
-import {Item} from '../entities';
 
 const styles = Object.freeze({
   link: {
@@ -18,37 +18,22 @@ const styles = Object.freeze({
 });
 
 type State = {
-  cart: Item[],
+  cart: OrderItem[],
 };
 
-@stateful(state => state.cart)
+@stateful(state => ({cart: state.cart}))
 export class Cashier extends React.Component<{children: JSX.Element}, State> {
 
   render() {
     return (
       <div style={styles.wrapper}>
         <Categories categories={this.props.children} />
-        <Cart cartItems={this.state.cart
-          .reduce((cartItems:Item[], currentItem:Item) => {
-            let exists = cartItems.find(item => item.name === currentItem.name);
-            if (exists) {
-              exists.count++;
-              exists.price = currentItem.price * exists.count;
-            } else {
-              cartItems.push({
-                'name': currentItem.name,
-                'price': currentItem.price,
-                'count': 1,
-              });
-            }
-            return cartItems;
-          }, [])
-        } onCartSubmit={(e, cartItems) => {
+        <Cart cartItems={this.state.cart} onCartSubmit={(e, cartItems) => {
           e.preventDefault();
           dispatch(actions.orderCreated, {
             order: {
               id: 1,
-              status: 1,
+              status: OrderStatus.Todo,
               items: this.state.cart,
             },
           });

@@ -7,12 +7,15 @@ export enum OrderStatus {
 export interface Order {
   id: number;
   status: OrderStatus;
-  items: Item[];
+  items: OrderItem[];
 }
 
 export interface Item {
-    id?: number;
-    name: string;
-    price: number;
-    count?: number;
+  id?: number;
+  name: string;
+  price: number;
+}
+
+export interface OrderItem extends Item {
+  count: number;
 }

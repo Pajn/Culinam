@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {dispatch, stateful} from '../redux/helpers';
+import {dispatch, stateful} from '../redux/store';
 import {actions} from '../redux/actions';
 import {Item} from '../entities';
 
@@ -37,7 +37,7 @@ export class Dishes extends React.Component<{}, State> {
         <div>
           {
             this.state.items.map(item => (
-              <p key={item.id} onClick={() => {this.onAddToCart(item);}}>{item.name}</p>)
+              <p key={item.id} onClick={() => this.onAddToCart(item)}>{item.name}</p>)
             )
           }
         </div>
@@ -46,6 +46,6 @@ export class Dishes extends React.Component<{}, State> {
   }
 
   private onAddToCart(item: Item) {
-    dispatch(actions.inCart, {item});
+    dispatch(actions.addToCart, {item});
   }
 }
