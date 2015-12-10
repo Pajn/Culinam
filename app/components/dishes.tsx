@@ -30,7 +30,7 @@ const styles = Object.freeze({
 ],
 }))
 export class Dishes extends React.Component<{}, State> {
-
+  private itemId:any = 1;
   render() {
     return (
       <div style={styles.wrapper}>
@@ -46,6 +46,7 @@ export class Dishes extends React.Component<{}, State> {
   }
 
   private onAddToCart(item: Item) {
+    item.id = this.itemId++;
     dispatch(actions.inCart, {item});
   }
 }
