@@ -56,11 +56,10 @@ export const reduceTest = (component: any) => {
   }, [])(component);
 }
 
-export const renderCartItems = (component: any, items: Item[]) => {
+export const renderCartItems = R.curry((component: any, createElement:Function, items: Item[]) => {
   return R.compose(
-    R.addIndex(R.map)((item:Item, id:Number) => React.createElement(component, {key: id, item: item})),
+    R.addIndex(R.map)((item:Item, key:Number) => React.createElement(component, {key, item})),
     R.reduce((cartItems:Item[], currentItem:Item) => {
-      console.log(currentItem);
       let exists = cartItems.find(item => item.name === currentItem.name);
       if (exists) {
         exists.count++;
@@ -75,4 +74,4 @@ export const renderCartItems = (component: any, items: Item[]) => {
       return cartItems;
     }, [])
   )(items);
-}
+});

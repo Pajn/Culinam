@@ -4,7 +4,7 @@ import {actions} from '../redux/actions';
 import {Item, Order, OrderStatus} from '../entities';
 import {Dish} from './dish';
 import {renderCartItems} from '../utils/items';
-// import {reduceTest} from '../utils/items';
+const renderDishesInCart = renderCartItems(Dish, React.createElement);
 
 const styles = Object.freeze({
   text: {
@@ -53,32 +53,11 @@ export class Cart extends React.Component<{}, State> {
   private id:any = 1;
 
   render() {
-    // console.log('cart: ', this.state.cart);
-  //   console.log('FUNCTIONAL TEST: ', renderCartItems([
-  //   {
-  //     id: 1,
-  //     name: 'Lumber Jack',
-  //     price: 160
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Lumber Jack',
-  //     price: 160
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Fisk med dillsås',
-  //     price: 180
-  //   }
-  // ]));
-  // console.log('FUNCTIONAL TEST: ', renderCartItems(this.state.cart));
-    console.log('cart: ', this.state.cart);
-    // console.log('reduceTest: ', reduceTest(this.state.cart));
     return (
       <div style={styles.wrapper}>
         <div style={styles.listWrapper}>
           {
-            renderCartItems(Dish, this.state.cart)
+            renderDishesInCart(this.state.cart)
           }
         </div>
         <div style={styles.smallCartPanel}>
