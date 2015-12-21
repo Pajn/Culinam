@@ -28,7 +28,7 @@ type Properties = {
 function getItemStyles(props: Properties): Object {
   if (!props.offset) {
     return {
-      display: 'none',
+      display: 'none'
     };
   }
 

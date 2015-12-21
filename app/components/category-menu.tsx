@@ -7,7 +7,7 @@ const styles = Object.freeze({
     color: 'white',
   },
   wrapper: {
-    display: 'flex',
+    display: 'flex'
   },
 });
 
