@@ -38,7 +38,7 @@ export class Kitchen extends React.Component<{}, State> {
 
   componentDidMount() {
     this.setState({
-      width: findDOMNode(this.refs['column']).clientWidth,
+      width: findDOMNode(this.refs['column']).clientWidth
     } as State);
   }
 

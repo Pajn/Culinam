@@ -4,7 +4,7 @@ import {Dish} from './dish';
 
 const styles = Object.freeze({
   text: {
-    color: 'black',
+    color: 'black'
   },
   wrapper: {
     width: '30%',

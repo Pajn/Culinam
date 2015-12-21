@@ -3,7 +3,7 @@ import {OrderItem} from '../entities';
 
 const styles = Object.freeze({
   text: {
-    color: 'black',
+    color: 'black'
   },
   rowWrapper: {
     display: 'flex',
