@@ -58,7 +58,7 @@ var config = {
   ],
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (production) {
   var webpack = require('webpack');
 
   config.plugins = config.plugins.concat([
